@@ -12,4 +12,4 @@ Application with an user graphic interface allowing the creation of character sh
 
 ## How to launch ?
 **Windows :**  
-Just execute the batch file named `start.exe` at the root of the project.
+Just execute the batch file named `start.exe` at the root of the project after compile the source files (the main.exe should be in a folder named `bin` at the same level of the folder `src`).
