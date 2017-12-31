@@ -9,19 +9,24 @@ Character::Character(){
 	this->age = 0;
 	this->maxLife = 100;
 	currentLife = maxLife;
+	this->maxWeight = 120.;
+	currentWeight = 0.;
 	money = 0.;
 }
 
-Character::Character(string name, int age, int maxLife, Class characterClass){
+Character::Character(string name, int age, int maxLife, float maxWeight, Class characterClass){
 	this->name = name;
 	this->age = age;
 	this->maxLife = maxLife;
 	currentLife = maxLife;
+	this->maxWeight = maxWeight;
+	currentWeight = 0.;
 	this->characterClass = characterClass;
 	money = 0.;
 }
 
 Character::~Character(){
+	bag.clear();
 }
 
 string Character::getName(){
@@ -40,6 +45,10 @@ int Character::getCurrentLife(){
 	return currentLife;
 }
 
+float Character::getCurrentWeight(){
+	return currentWeight;
+}
+
 float Character::getCurrentMoney(){
 	return money;
 }
@@ -54,6 +63,7 @@ map<string, pair<Object*,int> > Character::getBag(){
 
 ostream& operator<< (ostream& os, Character character){
 	os << character.getName() << " :" << endl << "  Age : " << character.getAge() << endl << "  Class : " << character.getClassName() << endl;
+	os << "  Weight : " << character.getCurrentWeight() << endl;
 	os << "  Money : " << character.getCurrentMoney() << endl;
 	os << "  Items :";
 	map<string, pair<Object*,int> > tmp = character.getBag();
@@ -83,18 +93,28 @@ void Character::useMoney(float quantity){
 	money -= quantity;
 }
 
+bool Character::canCarrythis(float weight){
+	return (currentWeight+weight<=maxWeight);
+}
+
 void Character::addObject(Object object, int quantity){
 	string objName = object.getName();
 	pair<Object*,int> p;
 	p.first = &object;
 
-	if(bag.find(objName) != bag.end()){
-		p = bag.find(objName)->second;
-		p.second = p.second + quantity;
-	}else
-		p.second = quantity;
+	float totalWeight = quantity*object.getWeight();
+	if(canCarrythis(totalWeight)){
+		if(bag.find(objName) != bag.end()){
+			p = bag.find(objName)->second;
+			p.second = p.second + quantity;
+		}else
+			p.second = quantity;
 
-	bag[objName]=p;
+		currentWeight += totalWeight;
+		bag[objName]=p;
+	}else{
+		cout << name << " can't carry these objects. " << objName << " not added !" << endl;
+	}
 }
 
 void Character::removeObject(Object object, int quantity){
@@ -105,6 +125,7 @@ void Character::removeObject(Object object, int quantity){
 
 	pair<Object*,int> p;
 	p = bag.find(objName)->second;
+	float totalWeight = quantity*object.getWeight();
 
 	if(p.second-quantity <= 0)
 		bag.erase(objName); 
@@ -112,6 +133,8 @@ void Character::removeObject(Object object, int quantity){
 		p.second = p.second - quantity;
 		bag[objName]=p;
 	}
+
+	currentWeight -= totalWeight;
 }
 
 bool Character::hasObject(Object object){

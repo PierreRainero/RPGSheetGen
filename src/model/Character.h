@@ -10,13 +10,14 @@ using std::string;
 class Character{
 	public:
 		Character();
-		Character(string name, int age, int maxLife, Class characterClass);
+		Character(string name, int age, int maxLife, float maxWeight, Class characterClass);
 		~Character();
 
 		string getName();
 		int getAge();
 		string getClassName();
 		int getCurrentLife();
+		float getCurrentWeight();
 		float getCurrentMoney();
 
 		void setAge(int newAge);
@@ -39,9 +40,12 @@ class Character{
 		Class characterClass;
 		int maxLife;
 		int currentLife;
+		float maxWeight;
+		float currentWeight;
 		float money;
 		std::map<string, std::pair<Object*,int> > bag;
 
+		bool canCarrythis(float weight);
 		std::map<string, std::pair<Object*,int> > getBag();
 		
 };
