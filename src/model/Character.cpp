@@ -12,6 +12,8 @@ Character::Character(){
 	this->maxWeight = 120.;
 	currentWeight = 0.;
 	money = 0.;
+	equipedWeapon = NULL;
+	equipedClothe = NULL;
 }
 
 Character::Character(string name, int age, int maxLife, float maxWeight, Class characterClass){
@@ -23,6 +25,8 @@ Character::Character(string name, int age, int maxLife, float maxWeight, Class c
 	currentWeight = 0.;
 	this->characterClass = characterClass;
 	money = 0.;
+	equipedWeapon = NULL;
+	equipedClothe = NULL;
 }
 
 Character::~Character(){
@@ -53,6 +57,14 @@ float Character::getCurrentMoney(){
 	return money;
 }
 
+Weapon* Character::getEquipedWeapon(){
+	return equipedWeapon;
+}
+
+Clothe* Character::getEquipedClothe(){
+	return equipedClothe;
+}
+
 void Character::setAge(int newAge){
 	age = newAge;
 }
@@ -65,6 +77,23 @@ ostream& operator<< (ostream& os, Character character){
 	os << character.getName() << " :" << endl << "  Age : " << character.getAge() << endl << "  Class : " << character.getClassName() << endl;
 	os << "  Weight : " << character.getCurrentWeight() << endl;
 	os << "  Money : " << character.getCurrentMoney() << endl;
+
+	Weapon* tmpWeapon = character.getEquipedWeapon();
+	Clothe* tmpClothe = character.getEquipedClothe();
+	float power=0., cadence=0., magicalPro=0., physicalPro=0.;
+	if(tmpWeapon!=NULL){
+		power += tmpWeapon->getPower();
+		cadence += tmpWeapon->getCadence();
+	}
+	if(tmpClothe!=NULL){
+		magicalPro += tmpClothe->getMagicProtection();
+		physicalPro += tmpClothe->getPhysicalProtection();
+	}
+	os << "  Stats :" << endl << "    Power : " << power << endl;
+	os << "    Cadence : " << cadence << endl;
+	os << "    Magical protection : " << magicalPro << endl;
+	os  << "    Physical protection : " << physicalPro << endl;
+
 	os << "  Items :";
 	map<string, pair<Object*,int> > tmp = character.getBag();
 	map<string, pair<Object*,int> >::iterator it;
@@ -103,6 +132,7 @@ void Character::addObject(Object object, int quantity){
 	p.first = &object;
 
 	float totalWeight = quantity*object.getWeight();
+
 	if(canCarrythis(totalWeight)){
 		if(bag.find(objName) != bag.end()){
 			p = bag.find(objName)->second;
@@ -112,9 +142,8 @@ void Character::addObject(Object object, int quantity){
 
 		currentWeight += totalWeight;
 		bag[objName]=p;
-	}else{
+	}else
 		cout << name << " can't carry these objects. " << objName << " not added !" << endl;
-	}
 }
 
 void Character::removeObject(Object object, int quantity){
@@ -139,4 +168,14 @@ void Character::removeObject(Object object, int quantity){
 
 bool Character::hasObject(Object object){
 	return (bag.find(object.getName()) != bag.end());
+}
+
+void Character::equipWeapon(Weapon weapon){
+	if(hasObject(weapon))
+		equipedWeapon = &weapon;
+}
+
+void Character::equipClothe(Clothe clothe){
+	if(hasObject(clothe))
+		equipedClothe = &clothe;
 }

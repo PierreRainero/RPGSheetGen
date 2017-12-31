@@ -5,7 +5,8 @@ using std::string;
 #include <utility>
 
 #include "Class.h"
-#include "Object.h"
+#include "Weapon.h"
+#include "Clothe.h"
 
 class Character{
 	public:
@@ -19,6 +20,8 @@ class Character{
 		int getCurrentLife();
 		float getCurrentWeight();
 		float getCurrentMoney();
+		Weapon* getEquipedWeapon();
+		Clothe* getEquipedClothe();
 
 		void setAge(int newAge);
 
@@ -34,6 +37,9 @@ class Character{
 		void removeObject(Object object, int quantity);
 		bool hasObject(Object object);
 
+		void equipWeapon(Weapon weapon);
+		void equipClothe(Clothe clothe);
+
 	private:
 		string name;
 		int age;
@@ -44,8 +50,9 @@ class Character{
 		float currentWeight;
 		float money;
 		std::map<string, std::pair<Object*,int> > bag;
+		Weapon* equipedWeapon;
+		Clothe* equipedClothe;
 
 		bool canCarrythis(float weight);
-		std::map<string, std::pair<Object*,int> > getBag();
-		
+		std::map<string, std::pair<Object*,int> > getBag();	
 };

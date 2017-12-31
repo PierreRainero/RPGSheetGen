@@ -23,3 +23,9 @@ string Object::getName(){
 float Object::getWeight(){
 	return weight;
 }
+
+ostream& operator<< (ostream& os, Object object){
+	os << object.getName() << '(' << object.getWeight() << ')';
+
+	return os;
+}
