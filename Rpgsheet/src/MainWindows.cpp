@@ -2,6 +2,8 @@
 
 MainWindows::MainWindows()
 {
+
+    Charac = new Character();
     int ecart = 10;
     //this->set_border_width(ecart);
 

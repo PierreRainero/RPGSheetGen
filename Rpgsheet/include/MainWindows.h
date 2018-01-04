@@ -2,7 +2,7 @@
 #define MAINWINDOWS_H
 
 #include <gtkmm-3.0/gtkmm.h>
-
+#include <Character.h>
 class MainWindows : public Gtk::Window
 {
     public:
@@ -12,6 +12,8 @@ class MainWindows : public Gtk::Window
     protected:
 
     private:
+
+    Character* Charac;
     Gtk::VBox* boiteVGlobal;
     Gtk::HBox* boiteH;
     Gtk::VBox* boiteVInfo;
