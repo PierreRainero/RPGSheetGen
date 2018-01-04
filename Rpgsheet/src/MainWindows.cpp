@@ -15,6 +15,7 @@ MainWindows::MainWindows()
     boiteVValue = Gtk::manage(new Gtk::VBox(false, ecart));
     boiteHItem = Gtk::manage(new Gtk::HBox(false,ecart));
     boiteVItem = Gtk::manage(new Gtk::VBox(false,ecart));
+    boiteHModif = Gtk::manage(new Gtk::HBox(false,ecart));
 
     ListPerso.append("test");
     ListPerso.append("test2");
@@ -25,13 +26,13 @@ MainWindows::MainWindows()
     Class= Gtk::manage(new Gtk::Label("Class:"));
     Weight= Gtk::manage(new Gtk::Label("Weight:"));
     Money = Gtk::manage(new Gtk::Label("Money:"));
-    NullZone1 = Gtk::manage(new Gtk::Label(""));
+    Life = Gtk::manage(new Gtk::Label("Life:"));
 
     NameVal = Gtk::manage(new Gtk::Label("null"));
     ClassVal = Gtk::manage(new Gtk::Label("null"));
     WeightVal = Gtk::manage(new Gtk::Label("null"));
     MoneyVal = Gtk::manage(new Gtk::Label("null"));
-    NullZone3 = Gtk::manage(new Gtk::Label(""));
+    LifeVal = Gtk::manage(new Gtk::Label("null"));
 
     Stats = Gtk::manage(new Gtk::Label("Stats:"));
     Power = Gtk::manage(new Gtk::Label("Power:"));
@@ -51,18 +52,25 @@ MainWindows::MainWindows()
     NullZoneI3 = Gtk::manage(new Gtk::Label(""));
     ItemT = Gtk::manage(new Gtk::Table(5,2));
 
+    Modif.append("Life");
+    Modif.append("Money");
+    Modif.set_active_text("Money");
+    ButtonValModif = Gtk::manage(new Gtk::Button("Valide"));
+    Modif.signal_changed().connect(sigc::mem_fun(*this,&MainWindows::ChangeTextModif));
 
     boiteVInfo->pack_start(*Name);
     boiteVInfo->pack_start(*Class);
+    boiteVInfo->pack_start(*Life);
     boiteVInfo->pack_start(*Weight);
     boiteVInfo->pack_start(*Money);
-    boiteVInfo->pack_start(*NullZone1);
+
 
     boiteVInfoVal->pack_start(*NameVal);
     boiteVInfoVal->pack_start(*ClassVal);
+    boiteVInfoVal->pack_start(*LifeVal);
     boiteVInfoVal->pack_start(*WeightVal);
     boiteVInfoVal->pack_start(*MoneyVal);
-    boiteVInfoVal->pack_start(*NullZone3);
+
 
     boiteVStat->pack_start(*Stats);
     boiteVStat->pack_start(*Power);
@@ -89,10 +97,14 @@ MainWindows::MainWindows()
     boiteVItem->pack_start(*boiteHItem);
 
 
+    boiteHModif->pack_start(Modif);
+    boiteHModif->pack_start(ModifText);
+    boiteHModif->pack_start(*ButtonValModif);
+
     boiteVGlobal->pack_start(ListPerso);
     boiteVGlobal->pack_start(*boiteH);
     boiteVGlobal->pack_start(*boiteVItem);
-
+    boiteVGlobal->pack_start(*boiteHModif);
 
     this->add(*boiteVGlobal);
     this->show_all();
@@ -105,5 +117,14 @@ MainWindows::~MainWindows()
 }
 
 void MainWindows::ChangePerso(){
+    //cout<<ListPerso.get<<endl;
     NameVal->set_text(ListPerso.get_active_text());
+}
+
+void MainWindows::ChangeTextModif(){
+    switch(str2int(Modif.get_active_text())){
+        case(str2int("Money")) : ModifText.set_text(Charac.getCurrentMoney());
+        case(str2int("Life")) : ModifText.set_text(Charac.getCurrentLife());
+    }
+
 }

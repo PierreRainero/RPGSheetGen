@@ -22,6 +22,7 @@ class MainWindows : public Gtk::Window
     Gtk::VBox* boiteVValue;
     Gtk::HBox* boiteHItem;
     Gtk::VBox* boiteVItem;
+    Gtk::HBox* boiteHModif;
 
     Gtk::ComboBoxText ListPerso;
 
@@ -29,13 +30,13 @@ class MainWindows : public Gtk::Window
     Gtk::Label* Class;
     Gtk::Label* Weight;
     Gtk::Label* Money;
-    Gtk::Label* NullZone1;
+    Gtk::Label* Life;
 
     Gtk::Label* NameVal;
     Gtk::Label* ClassVal;
     Gtk::Label* WeightVal;
     Gtk::Label* MoneyVal;
-    Gtk::Label* NullZone3;
+    Gtk::Label* LifeVal;
 
     Gtk::Label* Stats;
     Gtk::Label* Power;
@@ -56,7 +57,12 @@ class MainWindows : public Gtk::Window
     Gtk::Label* NullZoneI3;
     Gtk::Table* ItemT;
 
+    Gtk::ComboBoxText Modif;
+    Gtk::Entry ModifText;
+    Gtk::Button* ButtonValModif;
+
     void ChangePerso();
+    void ChangeTextModif();
 };
 
 #endif // MAINWINDOWS_H
