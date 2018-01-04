@@ -3,44 +3,52 @@
 MainWindows::MainWindows()
 {
     int ecart = 10;
+    //this->set_border_width(ecart);
 
-    Gtk::VBox* boiteVGlobal = Gtk::manage(new Gtk::VBox(false, ecart));
-    Gtk::HBox* boiteH = Gtk::manage(new Gtk::HBox(true));
-    Gtk::VBox* boiteVInfo = Gtk::manage(new Gtk::VBox(false, ecart));
-    Gtk::VBox* boiteVInfoVal = Gtk::manage(new Gtk::VBox(false, ecart));
-    Gtk::VBox* boiteVStat = Gtk::manage(new Gtk::VBox(false, ecart));
-    Gtk::VBox* boiteVValue = Gtk::manage(new Gtk::VBox(false, ecart));
-    Gtk::HBox* boiteItem = Gtk::manage(new Gtk::HBox(false,ecart));
+    boiteVGlobal = Gtk::manage(new Gtk::VBox(false, ecart));
+    boiteH = Gtk::manage(new Gtk::HBox(true));
+    boiteVInfo = Gtk::manage(new Gtk::VBox(false, ecart));
+    boiteVInfoVal = Gtk::manage(new Gtk::VBox(false, ecart));
+    boiteVStat = Gtk::manage(new Gtk::VBox(false, ecart));
+    boiteVValue = Gtk::manage(new Gtk::VBox(false, ecart));
+    boiteHItem = Gtk::manage(new Gtk::HBox(false,ecart));
+    boiteVItem = Gtk::manage(new Gtk::VBox(false,ecart));
 
-    Gtk::Label* Name = Gtk::manage(new Gtk::Label("Name:"));
-    Gtk::Label* Class= Gtk::manage(new Gtk::Label("Class:"));
-    Gtk::Label* Weight= Gtk::manage(new Gtk::Label("Weight:"));
-    Gtk::Label* Money = Gtk::manage(new Gtk::Label("Money:"));
-    Gtk::Label* NullZone1 = Gtk::manage(new Gtk::Label(""));
+    ListPerso.append("test");
+    ListPerso.append("test2");
+    ListPerso.set_active_text("test");
+    ListPerso.signal_changed().connect(sigc::mem_fun(*this,&MainWindows::ChangePerso));
 
-    Gtk::Label* NameVal = Gtk::manage(new Gtk::Label("null"));
-    Gtk::Label* ClassVal = Gtk::manage(new Gtk::Label("null"));
-    Gtk::Label* WeightVal = Gtk::manage(new Gtk::Label("null"));
-    Gtk::Label* MoneyVal = Gtk::manage(new Gtk::Label("null"));
-    Gtk::Label* NullZone3 = Gtk::manage(new Gtk::Label(""));
+    Name = Gtk::manage(new Gtk::Label("Name:"));
+    Class= Gtk::manage(new Gtk::Label("Class:"));
+    Weight= Gtk::manage(new Gtk::Label("Weight:"));
+    Money = Gtk::manage(new Gtk::Label("Money:"));
+    NullZone1 = Gtk::manage(new Gtk::Label(""));
 
-    Gtk::Label* Stats = Gtk::manage(new Gtk::Label("Stats:"));
-    Gtk::Label* Power = Gtk::manage(new Gtk::Label("Power:"));
-    Gtk::Label* Cadence = Gtk::manage(new Gtk::Label("Cadence:"));
-    Gtk::Label* MagPro = Gtk::manage(new Gtk::Label("Magical Protection:"));
-    Gtk::Label* PhyPro = Gtk::manage(new Gtk::Label("Physical Protection:"));
+    NameVal = Gtk::manage(new Gtk::Label("null"));
+    ClassVal = Gtk::manage(new Gtk::Label("null"));
+    WeightVal = Gtk::manage(new Gtk::Label("null"));
+    MoneyVal = Gtk::manage(new Gtk::Label("null"));
+    NullZone3 = Gtk::manage(new Gtk::Label(""));
 
-    Gtk::Label* NullZone2 = Gtk::manage(new Gtk::Label(""));
-    Gtk::Label* PowerVal = Gtk::manage(new Gtk::Label("null"));
-    Gtk::Label* CadenceVal = Gtk::manage(new Gtk::Label("null"));
-    Gtk::Label* MagProVal = Gtk::manage(new Gtk::Label("null"));
-    Gtk::Label* PhyProVal = Gtk::manage(new Gtk::Label("null"));
+    Stats = Gtk::manage(new Gtk::Label("Stats:"));
+    Power = Gtk::manage(new Gtk::Label("Power:"));
+    Cadence = Gtk::manage(new Gtk::Label("Cadence:"));
+    MagPro = Gtk::manage(new Gtk::Label("Magical Protection:"));
+    PhyPro = Gtk::manage(new Gtk::Label("Physical Protection:"));
 
+    NullZone2 = Gtk::manage(new Gtk::Label(""));
+    PowerVal = Gtk::manage(new Gtk::Label("null"));
+    CadenceVal = Gtk::manage(new Gtk::Label("null"));
+    MagProVal = Gtk::manage(new Gtk::Label("null"));
+    PhyProVal = Gtk::manage(new Gtk::Label("null"));
 
-    Gtk::Label* Item = Gtk::manage(new Gtk::Label("Item:"));
-    Gtk::Alignment* Align = Gtk::manage(new Gtk::Alignment(Gtk::ALIGN_START, Gtk::ALIGN_START, 10.0, 0));
+    Item = Gtk::manage(new Gtk::Label("Item:"));
+    NullZoneI1 = Gtk::manage(new Gtk::Label(""));
+    NullZoneI2 = Gtk::manage(new Gtk::Label(""));
+    NullZoneI3 = Gtk::manage(new Gtk::Label(""));
+    ItemT = Gtk::manage(new Gtk::Table(5,2));
 
-    Align->add(*Item);
 
     boiteVInfo->pack_start(*Name);
     boiteVInfo->pack_start(*Class);
@@ -72,17 +80,28 @@ MainWindows::MainWindows()
     boiteH->pack_start(*boiteVStat);
     boiteH->pack_start(*boiteVValue);
 
-    boiteItem->pack_start(*Align);
+    boiteHItem->pack_start(*Item);
+    boiteHItem->pack_start(*NullZoneI1);
+    boiteHItem->pack_start(*NullZoneI2);
+    boiteHItem->pack_start(*NullZoneI3);
+    boiteVItem->pack_start(*boiteHItem);
 
+
+    boiteVGlobal->pack_start(ListPerso);
     boiteVGlobal->pack_start(*boiteH);
-    boiteVGlobal->pack_start(*boiteItem);
+    boiteVGlobal->pack_start(*boiteVItem);
 
 
     this->add(*boiteVGlobal);
     this->show_all();
+    MainWindows::ChangePerso();
 }
 
 MainWindows::~MainWindows()
 {
     //dtor
+}
+
+void MainWindows::ChangePerso(){
+    NameVal->set_text(ListPerso.get_active_text());
 }
