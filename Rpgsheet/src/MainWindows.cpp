@@ -2,7 +2,6 @@
 
 MainWindows::MainWindows()
 {
-
     Charac = new Character();
     int ecart = 10;
     //this->set_border_width(ecart);
@@ -116,15 +115,34 @@ MainWindows::~MainWindows()
     //dtor
 }
 
+
+
+
 void MainWindows::ChangePerso(){
-    //cout<<ListPerso.get<<endl;
     NameVal->set_text(ListPerso.get_active_text());
+    //Charac = APPEL SQL (PARAM NOM DU PERSO)
+    ClassVal->set_text(Charac->getClassName());
+    char life= (char)Charac->getCurrentLife();
+    LifeVal->set_text(&life);
+    char weight = (char)Charac->getCurrentWeight();
+    WeightVal->set_text(&weight);
+    char money = (char) Charac->getCurrentMoney();
+    MoneyVal->set_text(&money);
+
+
+
+
+
+
 }
 
 void MainWindows::ChangeTextModif(){
-    switch(str2int(Modif.get_active_text())){
-        case(str2int("Money")) : ModifText.set_text(Charac.getCurrentMoney());
-        case(str2int("Life")) : ModifText.set_text(Charac.getCurrentLife());
+    if(Modif.get_active_text()=="Money"){
+        ModifText.set_text(MoneyVal->get_text());
+    }
+    else if(Modif.get_active_text()=="Life"){
+        ModifText.set_text(LifeVal->get_text());
     }
 
 }
+

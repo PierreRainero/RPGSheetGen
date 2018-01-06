@@ -63,6 +63,7 @@ class MainWindows : public Gtk::Window
 
     void ChangePerso();
     void ChangeTextModif();
+
 };
 
 #endif // MAINWINDOWS_H
