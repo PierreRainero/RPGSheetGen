@@ -3,6 +3,8 @@
 
 #include <gtkmm-3.0/gtkmm.h>
 #include <Character.h>
+#include <iostream>
+
 class MainWindows : public Gtk::Window
 {
     public:
@@ -63,6 +65,7 @@ class MainWindows : public Gtk::Window
 
     void ChangePerso();
     void ChangeTextModif();
+    void UpdateValue();
 
 };
 

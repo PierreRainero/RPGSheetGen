@@ -4,11 +4,12 @@
 	<gtkmm-3.0/gtkmm.h>
 	"MainWindows.h"
 
-1515252865 /home/black/RPGSheetGen/Rpgsheet/include/MainWindows.h
+1515260494 /home/black/RPGSheetGen/Rpgsheet/include/MainWindows.h
 	<gtkmm-3.0/gtkmm.h>
 	<Character.h>
+	<iostream>
 
-1515256984 source:/home/black/RPGSheetGen/Rpgsheet/src/MainWindows.cpp
+1515257181 source:/home/black/RPGSheetGen/Rpgsheet/src/MainWindows.cpp
 	"MainWindows.h"
 
 1515251239 /home/black/RPGSheetGen/Rpgsheet/include/Character.h

@@ -1,4 +1,5 @@
 #include "MainWindows.h"
+using namespace std;
 
 MainWindows::MainWindows()
 {
@@ -54,8 +55,9 @@ MainWindows::MainWindows()
     Modif.append("Life");
     Modif.append("Money");
     Modif.set_active_text("Money");
-    ButtonValModif = Gtk::manage(new Gtk::Button("Valide"));
     Modif.signal_changed().connect(sigc::mem_fun(*this,&MainWindows::ChangeTextModif));
+    ButtonValModif = Gtk::manage(new Gtk::Button("Valide"));
+    ButtonValModif->signal_clicked().connect(sigc::bind(MainWindows::UpdateValue));
 
     boiteVInfo->pack_start(*Name);
     boiteVInfo->pack_start(*Class);
@@ -121,28 +123,29 @@ MainWindows::~MainWindows()
 void MainWindows::ChangePerso(){
     NameVal->set_text(ListPerso.get_active_text());
     //Charac = APPEL SQL (PARAM NOM DU PERSO)
+
     ClassVal->set_text(Charac->getClassName());
-    char life= (char)Charac->getCurrentLife();
-    LifeVal->set_text(&life);
-    char weight = (char)Charac->getCurrentWeight();
-    WeightVal->set_text(&weight);
-    char money = (char) Charac->getCurrentMoney();
-    MoneyVal->set_text(&money);
-
-
-
-
-
+    string life = to_string(Charac->getCurrentLife());
+    LifeVal->set_text(life);
+    string weight = to_string(Charac->getCurrentWeight());
+    WeightVal->set_text(weight);
+    string money = to_string(Charac->getCurrentMoney());
+    MoneyVal->set_text(money);
+    MainWindows::ChangeTextModif();
 
 }
 
 void MainWindows::ChangeTextModif(){
     if(Modif.get_active_text()=="Money"){
-        ModifText.set_text(MoneyVal->get_text());
+        ModifText.set_text("0");
     }
     else if(Modif.get_active_text()=="Life"){
-        ModifText.set_text(LifeVal->get_text());
+        ModifText.set_text("0");
     }
+}
 
+void MainWindows::UpdateValue(){
+    int valueUpdate = std::stoi(ModifText.get_text());
+    cout << valueUpdate <<endl;
 }
 
