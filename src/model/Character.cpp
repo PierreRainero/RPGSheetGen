@@ -65,34 +65,49 @@ Clothe* Character::getEquipedClothe(){
 	return equipedClothe;
 }
 
-void Character::setAge(int newAge){
-	age = newAge;
+float Character::getDamagePoints(){
+	float power=1.;
+
+	if(equipedWeapon!=NULL)
+		power += equipedWeapon->getPower() * equipedWeapon->getCadence();
+
+	return power;
+}
+
+float Character::getMagicProtection(){
+	float magicalPro=0.;
+
+	if(equipedClothe!=NULL)
+		magicalPro += equipedClothe->getMagicProtection();
+
+	return magicalPro;
+}
+
+float Character::getPhysicalProtection(){
+	float physicalPro=0.;
+
+	if(equipedClothe!=NULL)
+		physicalPro += equipedClothe->getPhysicalProtection();
+
+	return physicalPro;
 }
 
 map<string, pair<Object*,int> > Character::getBag(){
 	return bag;
 }
 
+void Character::setAge(int newAge){
+	age = newAge;
+}
+
 ostream& operator<< (ostream& os, Character character){
 	os << character.getName() << " :" << endl << "  Age : " << character.getAge() << endl << "  Class : " << character.getClassName() << endl;
 	os << "  Weight : " << character.getCurrentWeight() << endl;
 	os << "  Money : " << character.getCurrentMoney() << endl;
-
-	Weapon* tmpWeapon = character.getEquipedWeapon();
-	Clothe* tmpClothe = character.getEquipedClothe();
-	float power=0., cadence=0., magicalPro=0., physicalPro=0.;
-	if(tmpWeapon!=NULL){
-		power += tmpWeapon->getPower();
-		cadence += tmpWeapon->getCadence();
-	}
-	if(tmpClothe!=NULL){
-		magicalPro += tmpClothe->getMagicProtection();
-		physicalPro += tmpClothe->getPhysicalProtection();
-	}
-	os << "  Stats :" << endl << "    Power : " << power << endl;
-	os << "    Cadence : " << cadence << endl;
-	os << "    Magical protection : " << magicalPro << endl;
-	os  << "    Physical protection : " << physicalPro << endl;
+	os << "  Stats :" << endl;
+	os << "    Domage points : " << character.getDamagePoints() << endl;
+	os << "    Magical protection : " << character.getMagicProtection() << endl;
+	os << "    Physical protection : " << character.getPhysicalProtection() << endl;
 
 	os << "  Items :";
 	map<string, pair<Object*,int> > tmp = character.getBag();
