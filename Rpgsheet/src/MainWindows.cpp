@@ -57,7 +57,7 @@ MainWindows::MainWindows()
     Modif.set_active_text("Money");
     Modif.signal_changed().connect(sigc::mem_fun(*this,&MainWindows::ChangeTextModif));
     ButtonValModif = Gtk::manage(new Gtk::Button("Valide"));
-    ButtonValModif->signal_clicked().connect(sigc::bind(MainWindows::UpdateValue));
+    //ButtonValModif->signal_clicked().connect(sigc::bind(MainWindows::UpdateValue));
 
     boiteVInfo->pack_start(*Name);
     boiteVInfo->pack_start(*Class);
@@ -131,6 +131,27 @@ void MainWindows::ChangePerso(){
     WeightVal->set_text(weight);
     string money = to_string(Charac->getCurrentMoney());
     MoneyVal->set_text(money);
+
+    if(Charac->getEquipedWeapon() != NULL){
+        string cad = to_string(Charac->getEquipedWeapon()->getCadence());
+        CadenceVal->set_text(cad);
+        string power = to_string(Charac->getEquipedWeapon()->getPower());
+        PowerVal->set_text(power);
+    }
+    else{
+        CadenceVal->set_text("0");
+        PowerVal->set_text("0");
+    }
+    if(Charac->getEquipedClothe() != NULL){
+        string vetA = to_string(Charac->getEquipedClothe()->getPhysicalProtection());
+        PhyProVal->set_text(vetA);
+        string vetM = to_string(Charac->getEquipedClothe()->getMagicProtection());
+        MagProVal->set_text(vetM);
+    }
+    else{
+        PhyProVal->set_text("0");
+        MagProVal->set_text("0");
+    }
     MainWindows::ChangeTextModif();
 
 }
@@ -146,6 +167,18 @@ void MainWindows::ChangeTextModif(){
 
 void MainWindows::UpdateValue(){
     int valueUpdate = std::stoi(ModifText.get_text());
-    cout << valueUpdate <<endl;
+    if(valueUpdate < 0 && Modif.get_active_text() == "Life"){
+        Charac->takeDamage(-valueUpdate);
+    }
+    else{
+        Charac->heal(valueUpdate);
+    }
+    if(valueUpdate < 0 && Modif.get_active_text() == "Money"){
+        Charac->useMoney(-valueUpdate);
+    }
+    else{
+        Charac->addMoney(valueUpdate);
+    }
+    ChangePerso();
 }
 
