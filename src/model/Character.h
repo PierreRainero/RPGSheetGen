@@ -22,6 +22,10 @@ class Character{
 		float getCurrentMoney();
 		Weapon* getEquipedWeapon();
 		Clothe* getEquipedClothe();
+		float getDamagePoints();
+		float getMagicProtection();
+		float getPhysicalProtection();
+		std::map<string, std::pair<Object*,int> > getBag();	
 
 		void setAge(int newAge);
 
@@ -54,5 +58,4 @@ class Character{
 		Clothe* equipedClothe;
 
 		bool canCarrythis(float weight);
-		std::map<string, std::pair<Object*,int> > getBag();	
 };
