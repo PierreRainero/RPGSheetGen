@@ -8,6 +8,7 @@ MainWindows::MainWindows()
     //this->set_border_width(ecart);
 
     boiteVGlobal = Gtk::manage(new Gtk::VBox(false, ecart));
+    NoteB = Gtk::manage(new Gtk::Notebook());
     boiteH = Gtk::manage(new Gtk::HBox(true));
     boiteVInfo = Gtk::manage(new Gtk::VBox(false, ecart));
     boiteVInfoVal = Gtk::manage(new Gtk::VBox(false, ecart));
@@ -16,11 +17,14 @@ MainWindows::MainWindows()
     boiteHItem = Gtk::manage(new Gtk::HBox(false,ecart));
     boiteVItem = Gtk::manage(new Gtk::VBox(false,ecart));
     boiteHModif = Gtk::manage(new Gtk::HBox(false,ecart));
+    boiteEquipement = Gtk::manage(new Gtk::HBox(false,ecart));
+    boiteVF = Gtk::manage(new Gtk::VBox(false,ecart));
 
     ListPerso.append("test");
     ListPerso.append("test2");
     ListPerso.set_active_text("test");
     ListPerso.signal_changed().connect(sigc::mem_fun(*this,&MainWindows::ChangePerso));
+
 
     Name = Gtk::manage(new Gtk::Label("Name:"));
     Class= Gtk::manage(new Gtk::Label("Class:"));
@@ -35,16 +39,21 @@ MainWindows::MainWindows()
     LifeVal = Gtk::manage(new Gtk::Label("null"));
 
     Stats = Gtk::manage(new Gtk::Label("Stats:"));
-    Power = Gtk::manage(new Gtk::Label("Power:"));
-    Cadence = Gtk::manage(new Gtk::Label("Cadence:"));
+    Power = Gtk::manage(new Gtk::Label("DPS:"));
+    Cadence = Gtk::manage(new Gtk::Label(""));
     MagPro = Gtk::manage(new Gtk::Label("Magical Protection:"));
     PhyPro = Gtk::manage(new Gtk::Label("Physical Protection:"));
 
     NullZone2 = Gtk::manage(new Gtk::Label(""));
     PowerVal = Gtk::manage(new Gtk::Label("null"));
-    CadenceVal = Gtk::manage(new Gtk::Label("null"));
+    CadenceVal = Gtk::manage(new Gtk::Label(""));
     MagProVal = Gtk::manage(new Gtk::Label("null"));
     PhyProVal = Gtk::manage(new Gtk::Label("null"));
+
+    ClotheEq = Gtk::manage(new Gtk::Label("Clothe:"));
+    ClotheEqVal = Gtk::manage(new Gtk::Label(""));
+    WeaponEq = Gtk::manage(new Gtk::Label("Weapon:"));
+    WeaponEqVal = Gtk::manage(new Gtk::Label(""));
 
     Item = Gtk::manage(new Gtk::Label("Item:"));
     NullZoneI1 = Gtk::manage(new Gtk::Label(""));
@@ -57,7 +66,7 @@ MainWindows::MainWindows()
     Modif.set_active_text("Money");
     Modif.signal_changed().connect(sigc::mem_fun(*this,&MainWindows::ChangeTextModif));
     ButtonValModif = Gtk::manage(new Gtk::Button("Valide"));
-    //ButtonValModif->signal_clicked().connect(sigc::bind(MainWindows::UpdateValue));
+    ButtonValModif->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::UpdateValue));
 
     boiteVInfo->pack_start(*Name);
     boiteVInfo->pack_start(*Class);
@@ -75,15 +84,15 @@ MainWindows::MainWindows()
 
     boiteVStat->pack_start(*Stats);
     boiteVStat->pack_start(*Power);
-    boiteVStat->pack_start(*Cadence);
     boiteVStat->pack_start(*MagPro);
     boiteVStat->pack_start(*PhyPro);
+    boiteVStat->pack_start(*Cadence);
 
     boiteVValue->pack_start(*NullZone2);
     boiteVValue->pack_start(*PowerVal);
-    boiteVValue->pack_start(*CadenceVal);
     boiteVValue->pack_start(*MagProVal);
     boiteVValue->pack_start(*PhyProVal);
+    boiteVValue->pack_start(*CadenceVal);
 
 
     boiteH->pack_start(*boiteVInfo);
@@ -91,6 +100,22 @@ MainWindows::MainWindows()
     boiteH->pack_start(*boiteVStat);
     boiteH->pack_start(*boiteVValue);
 
+    boiteEquipement->pack_start(*ClotheEq);
+    boiteEquipement->pack_start(*ClotheEqVal);
+    boiteEquipement->pack_start(*WeaponEq);
+    boiteEquipement->pack_start(*WeaponEqVal);
+
+    boiteHModif->pack_start(Modif);
+    boiteHModif->pack_start(ModifText);
+    boiteHModif->pack_start(*ButtonValModif);
+
+    boiteVF->pack_start(*boiteH);
+    boiteVF->pack_start(*boiteEquipement);
+    boiteVF->pack_start(*boiteHModif);
+
+
+
+    // ONGLET 2
     boiteHItem->pack_start(*Item);
     boiteHItem->pack_start(*NullZoneI1);
     boiteHItem->pack_start(*NullZoneI2);
@@ -98,15 +123,11 @@ MainWindows::MainWindows()
     boiteVItem->pack_start(*boiteHItem);
 
 
-    boiteHModif->pack_start(Modif);
-    boiteHModif->pack_start(ModifText);
-    boiteHModif->pack_start(*ButtonValModif);
 
+    NoteB->append_page(*boiteVF,"Stats");
+    NoteB->append_page(*boiteVItem,"Item");
     boiteVGlobal->pack_start(ListPerso);
-    boiteVGlobal->pack_start(*boiteH);
-    boiteVGlobal->pack_start(*boiteVItem);
-    boiteVGlobal->pack_start(*boiteHModif);
-
+    boiteVGlobal->pack_start(*NoteB);
     this->add(*boiteVGlobal);
     this->show_all();
     MainWindows::ChangePerso();
@@ -131,27 +152,12 @@ void MainWindows::ChangePerso(){
     WeightVal->set_text(weight);
     string money = to_string(Charac->getCurrentMoney());
     MoneyVal->set_text(money);
-
-    if(Charac->getEquipedWeapon() != NULL){
-        string cad = to_string(Charac->getEquipedWeapon()->getCadence());
-        CadenceVal->set_text(cad);
-        string power = to_string(Charac->getEquipedWeapon()->getPower());
-        PowerVal->set_text(power);
-    }
-    else{
-        CadenceVal->set_text("0");
-        PowerVal->set_text("0");
-    }
-    if(Charac->getEquipedClothe() != NULL){
-        string vetA = to_string(Charac->getEquipedClothe()->getPhysicalProtection());
-        PhyProVal->set_text(vetA);
-        string vetM = to_string(Charac->getEquipedClothe()->getMagicProtection());
-        MagProVal->set_text(vetM);
-    }
-    else{
-        PhyProVal->set_text("0");
-        MagProVal->set_text("0");
-    }
+    string power = to_string(Charac->getDamagePoints());
+    PowerVal->set_text(power);
+    string vetA = to_string(Charac->getPhysicalProtection());
+    PhyProVal->set_text(vetA);
+    string vetM = to_string(Charac->getMagicProtection());
+    MagProVal->set_text(vetM);
     MainWindows::ChangeTextModif();
 
 }
@@ -166,17 +172,17 @@ void MainWindows::ChangeTextModif(){
 }
 
 void MainWindows::UpdateValue(){
-    int valueUpdate = std::stoi(ModifText.get_text());
+    float valueUpdate = std::stof(ModifText.get_text());
     if(valueUpdate < 0 && Modif.get_active_text() == "Life"){
         Charac->takeDamage(-valueUpdate);
     }
-    else{
+    else if (Modif.get_active_text() == "Life"){
         Charac->heal(valueUpdate);
     }
-    if(valueUpdate < 0 && Modif.get_active_text() == "Money"){
+    else if(valueUpdate < 0 && Modif.get_active_text() == "Money"){
         Charac->useMoney(-valueUpdate);
     }
-    else{
+    else if( Modif.get_active_text() == "Money"){
         Charac->addMoney(valueUpdate);
     }
     ChangePerso();

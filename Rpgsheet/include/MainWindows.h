@@ -16,6 +16,7 @@ class MainWindows : public Gtk::Window
     private:
 
     Character* Charac;
+    Gtk::Notebook* NoteB;
     Gtk::VBox* boiteVGlobal;
     Gtk::HBox* boiteH;
     Gtk::VBox* boiteVInfo;
@@ -25,6 +26,8 @@ class MainWindows : public Gtk::Window
     Gtk::HBox* boiteHItem;
     Gtk::VBox* boiteVItem;
     Gtk::HBox* boiteHModif;
+    Gtk::HBox* boiteEquipement;
+    Gtk::VBox* boiteVF;
 
     Gtk::ComboBoxText ListPerso;
 
@@ -62,6 +65,11 @@ class MainWindows : public Gtk::Window
     Gtk::ComboBoxText Modif;
     Gtk::Entry ModifText;
     Gtk::Button* ButtonValModif;
+
+    Gtk::Label* ClotheEq;
+    Gtk::Label* ClotheEqVal;
+    Gtk::Label* WeaponEq;
+    Gtk::Label* WeaponEqVal;
 
     void ChangePerso();
     void ChangeTextModif();
