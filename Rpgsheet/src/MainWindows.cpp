@@ -71,7 +71,7 @@ MainWindows::MainWindows()
 
     butonAddItem = Gtk::manage(new Gtk::Button("Add Item"));
     butonCreateItem = Gtk::manage(new Gtk::Button("New Item"));
-    butonAddItem->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::AddItem));
+    butonAddItem->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::AddItems));
     butonCreateItem->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::NewItem));
 
     ButonNewPerso = Gtk::manage(new Gtk::Button("New Character"));
@@ -201,17 +201,29 @@ void MainWindows::UpdateValue(){
     ChangePerso();
 }
 
-void MainWindows::AddItem(){
+void MainWindows::AddItems(){
+    AddItem fene(*Charac);
+    Gtk::Main::run(fene);
 }
 
 void MainWindows::NewItem(){
 //    Gtk::Main app(argc, argv);
     CreatItem fenetreNewItem;
     Gtk::Main::run(fenetreNewItem);
+    while(fenetreNewItem.is_visible()){
+    }
 }
 
 void MainWindows::NewPerso(){
 
     CreateCharac fenetreNewCharac;
     Gtk::Main::run(fenetreNewCharac);
+    while(fenetreNewCharac.is_visible()){
+
+    }
+
+}
+
+void Filler(){
+
 }

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <CreatItem.h>
 #include <CreateCharac.h>
+#include <AddItem.h>
 
 class MainWindows : public Gtk::Window
 {
@@ -82,9 +83,10 @@ class MainWindows : public Gtk::Window
     void ChangePerso();
     void ChangeTextModif();
     void UpdateValue();
-    void AddItem();
+    void AddItems();
     void NewItem();
     void NewPerso();
+    void Filler();
 
 };
 

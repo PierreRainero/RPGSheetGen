@@ -1,3 +1,6 @@
+#ifndef CHARACTER_H
+#define CHARACTER_H
+#include <iostream>
 using std::ostream;
 using std::string;
 
@@ -25,7 +28,7 @@ class Character{
 		float getDamagePoints();
 		float getMagicProtection();
 		float getPhysicalProtection();
-		std::map<string, std::pair<Object*,int> > getBag();	
+		std::map<string, std::pair<Object*,int> > getBag();
 
 		void setAge(int newAge);
 
@@ -59,3 +62,5 @@ class Character{
 
 		bool canCarrythis(float weight);
 };
+
+#endif

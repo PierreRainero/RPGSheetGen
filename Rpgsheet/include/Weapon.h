@@ -1,3 +1,6 @@
+#ifndef WEAPON_H
+#define WEAPON_H
+#include <iostream>
 using std::ostream;
 
 #include "Object.h"
@@ -17,3 +20,5 @@ class Weapon : public Object {
 		float power;
         float cadence;
 };
+
+#endif

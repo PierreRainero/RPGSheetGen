@@ -1,3 +1,7 @@
+#ifndef CLASS_H
+#define CLASS_H
+#include <iostream>
+
 using std::ostream;
 using std::string;
 
@@ -12,3 +16,5 @@ class Class{
 	private:
 		string name;
 };
+
+#endif

@@ -38,6 +38,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/AddItem.h" />
 		<Unit filename="include/Character.h" />
 		<Unit filename="include/Class.h" />
 		<Unit filename="include/Clothe.h" />
@@ -47,6 +48,7 @@
 		<Unit filename="include/Object.h" />
 		<Unit filename="include/Weapon.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/AddItem.cpp" />
 		<Unit filename="src/Character.cpp" />
 		<Unit filename="src/Class.cpp" />
 		<Unit filename="src/Clothe.cpp" />
