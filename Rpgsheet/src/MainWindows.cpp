@@ -19,6 +19,7 @@ MainWindows::MainWindows()
     boiteHModif = Gtk::manage(new Gtk::HBox(false,ecart));
     boiteEquipement = Gtk::manage(new Gtk::HBox(false,ecart));
     boiteVF = Gtk::manage(new Gtk::VBox(false,ecart));
+    boiteButonItem = Gtk::manage(new Gtk::HBox(false,ecart));
 
     ListPerso.append("test");
     ListPerso.append("test2");
@@ -68,6 +69,14 @@ MainWindows::MainWindows()
     ButtonValModif = Gtk::manage(new Gtk::Button("Valide"));
     ButtonValModif->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::UpdateValue));
 
+    butonAddItem = Gtk::manage(new Gtk::Button("Add Item"));
+    butonCreateItem = Gtk::manage(new Gtk::Button("New Item"));
+    butonAddItem->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::AddItem));
+    butonCreateItem->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::NewItem));
+
+    ButonNewPerso = Gtk::manage(new Gtk::Button("New Character"));
+    ButonNewPerso->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::NewPerso));
+
     boiteVInfo->pack_start(*Name);
     boiteVInfo->pack_start(*Class);
     boiteVInfo->pack_start(*Life);
@@ -112,17 +121,21 @@ MainWindows::MainWindows()
     boiteVF->pack_start(*boiteH);
     boiteVF->pack_start(*boiteEquipement);
     boiteVF->pack_start(*boiteHModif);
+    boiteVF->pack_start(*ButonNewPerso);
 
 
 
     // ONGLET 2
+
+    boiteButonItem->pack_start(*butonAddItem);
+    boiteButonItem->pack_start(*butonCreateItem);
+
     boiteHItem->pack_start(*Item);
     boiteHItem->pack_start(*NullZoneI1);
     boiteHItem->pack_start(*NullZoneI2);
     boiteHItem->pack_start(*NullZoneI3);
     boiteVItem->pack_start(*boiteHItem);
-
-
+    boiteVItem->pack_start(*boiteButonItem);
 
     NoteB->append_page(*boiteVF,"Stats");
     NoteB->append_page(*boiteVItem,"Item");
@@ -188,3 +201,17 @@ void MainWindows::UpdateValue(){
     ChangePerso();
 }
 
+void MainWindows::AddItem(){
+}
+
+void MainWindows::NewItem(){
+//    Gtk::Main app(argc, argv);
+    CreatItem fenetreNewItem;
+    Gtk::Main::run(fenetreNewItem);
+}
+
+void MainWindows::NewPerso(){
+
+    CreateCharac fenetreNewCharac;
+    Gtk::Main::run(fenetreNewCharac);
+}

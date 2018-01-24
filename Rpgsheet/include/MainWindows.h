@@ -4,6 +4,8 @@
 #include <gtkmm-3.0/gtkmm.h>
 #include <Character.h>
 #include <iostream>
+#include <CreatItem.h>
+#include <CreateCharac.h>
 
 class MainWindows : public Gtk::Window
 {
@@ -28,6 +30,7 @@ class MainWindows : public Gtk::Window
     Gtk::HBox* boiteHModif;
     Gtk::HBox* boiteEquipement;
     Gtk::VBox* boiteVF;
+    Gtk::HBox* boiteButonItem;
 
     Gtk::ComboBoxText ListPerso;
 
@@ -65,15 +68,23 @@ class MainWindows : public Gtk::Window
     Gtk::ComboBoxText Modif;
     Gtk::Entry ModifText;
     Gtk::Button* ButtonValModif;
+    Gtk::Button* ButonNewPerso;
 
     Gtk::Label* ClotheEq;
     Gtk::Label* ClotheEqVal;
     Gtk::Label* WeaponEq;
     Gtk::Label* WeaponEqVal;
 
+    Gtk::Button* butonAddItem;
+    Gtk::Button* butonCreateItem;
+
+
     void ChangePerso();
     void ChangeTextModif();
     void UpdateValue();
+    void AddItem();
+    void NewItem();
+    void NewPerso();
 
 };
 
