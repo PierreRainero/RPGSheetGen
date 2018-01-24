@@ -38,9 +38,25 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/AddItem.h" />
+		<Unit filename="include/Character.h" />
+		<Unit filename="include/Class.h" />
+		<Unit filename="include/Clothe.h" />
+		<Unit filename="include/CreatItem.h" />
+		<Unit filename="include/CreateCharac.h" />
 		<Unit filename="include/MainWindows.h" />
+		<Unit filename="include/Object.h" />
+		<Unit filename="include/Weapon.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/AddItem.cpp" />
+		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/Class.cpp" />
+		<Unit filename="src/Clothe.cpp" />
+		<Unit filename="src/CreatItem.cpp" />
+		<Unit filename="src/CreateCharac.cpp" />
 		<Unit filename="src/MainWindows.cpp" />
+		<Unit filename="src/Object.cpp" />
+		<Unit filename="src/Weapon.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

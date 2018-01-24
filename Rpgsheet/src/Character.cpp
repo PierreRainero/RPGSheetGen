@@ -66,11 +66,10 @@ Clothe* Character::getEquipedClothe(){
 }
 
 float Character::getDamagePoints(){
-	float power=1.;
+	float power=1;
 
 	if(equipedWeapon!=NULL)
 		power += equipedWeapon->getPower() * equipedWeapon->getCadence();
-
 	return power;
 }
 
@@ -172,7 +171,7 @@ void Character::removeObject(Object object, int quantity){
 	float totalWeight = quantity*object.getWeight();
 
 	if(p.second-quantity <= 0)
-		bag.erase(objName); 
+		bag.erase(objName);
 	else{
 		p.second = p.second - quantity;
 		bag[objName]=p;

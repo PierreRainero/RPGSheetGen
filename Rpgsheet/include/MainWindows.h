@@ -2,6 +2,12 @@
 #define MAINWINDOWS_H
 
 #include <gtkmm-3.0/gtkmm.h>
+#include <Character.h>
+#include <iostream>
+#include <CreatItem.h>
+#include <CreateCharac.h>
+#include <AddItem.h>
+
 class MainWindows : public Gtk::Window
 {
     public:
@@ -11,6 +17,9 @@ class MainWindows : public Gtk::Window
     protected:
 
     private:
+
+    Character* Charac;
+    Gtk::Notebook* NoteB;
     Gtk::VBox* boiteVGlobal;
     Gtk::HBox* boiteH;
     Gtk::VBox* boiteVInfo;
@@ -19,6 +28,10 @@ class MainWindows : public Gtk::Window
     Gtk::VBox* boiteVValue;
     Gtk::HBox* boiteHItem;
     Gtk::VBox* boiteVItem;
+    Gtk::HBox* boiteHModif;
+    Gtk::HBox* boiteEquipement;
+    Gtk::VBox* boiteVF;
+    Gtk::HBox* boiteButonItem;
 
     Gtk::ComboBoxText ListPerso;
 
@@ -26,13 +39,13 @@ class MainWindows : public Gtk::Window
     Gtk::Label* Class;
     Gtk::Label* Weight;
     Gtk::Label* Money;
-    Gtk::Label* NullZone1;
+    Gtk::Label* Life;
 
     Gtk::Label* NameVal;
     Gtk::Label* ClassVal;
     Gtk::Label* WeightVal;
     Gtk::Label* MoneyVal;
-    Gtk::Label* NullZone3;
+    Gtk::Label* LifeVal;
 
     Gtk::Label* Stats;
     Gtk::Label* Power;
@@ -53,7 +66,28 @@ class MainWindows : public Gtk::Window
     Gtk::Label* NullZoneI3;
     Gtk::Table* ItemT;
 
+    Gtk::ComboBoxText Modif;
+    Gtk::Entry ModifText;
+    Gtk::Button* ButtonValModif;
+    Gtk::Button* ButonNewPerso;
+
+    Gtk::Label* ClotheEq;
+    Gtk::Label* ClotheEqVal;
+    Gtk::Label* WeaponEq;
+    Gtk::Label* WeaponEqVal;
+
+    Gtk::Button* butonAddItem;
+    Gtk::Button* butonCreateItem;
+
+
     void ChangePerso();
+    void ChangeTextModif();
+    void UpdateValue();
+    void AddItems();
+    void NewItem();
+    void NewPerso();
+    void Filler();
+
 };
 
 #endif // MAINWINDOWS_H
