@@ -13,8 +13,8 @@ Character::Character(){
 	money = 0.;
 	Weapon wea;
 	Clothe clo;
-	equipedWeapon = wea;
-	equipedClothe = clo;
+	equipedWeapon = NULL;
+	equipedClothe = NULL;
 }
 
 Character::Character(string name, int age, int maxLife, float maxWeight, Class characterClass){
@@ -26,10 +26,8 @@ Character::Character(string name, int age, int maxLife, float maxWeight, Class c
 	currentWeight = 0.;
 	this->characterClass = characterClass;
 	money = 0.;
-	Weapon wea;
-	Clothe clo;
-	equipedWeapon = wea;
-	equipedClothe = clo;
+	equipedWeapon = NULL;
+	equipedClothe = NULL;
 }
 
 Character::~Character(){
@@ -68,11 +66,11 @@ float Character::getCurrentMoney(){
 	return money;
 }
 
-Weapon Character::getEquipedWeapon(){
+Weapon* Character::getEquipedWeapon(){
 	return equipedWeapon;
 }
 
-Clothe Character::getEquipedClothe(){
+Clothe* Character::getEquipedClothe(){
 	return equipedClothe;
 }
 
@@ -120,22 +118,10 @@ ostream& operator<< (ostream& os, Character character){
 	os << character.getName() << " :" << endl << "  Age : " << character.getAge() << endl << "  Class : " << character.getClassName() << endl;
 	os << "  Weight : " << character.getCurrentWeight() << endl;
 	os << "  Money : " << character.getCurrentMoney() << endl;
-
-	Weapon tmpWeapon = character.getEquipedWeapon();
-	Clothe tmpClothe = character.getEquipedClothe();
-	//float power=0., cadence=0., magicalPro=0., physicalPro=0.;
-	/*if(tmpWeapon!=NULL){
-		power += tmpWeapon->getPower();
-		cadence += tmpWeapon->getCadence();
-	}
-	if(tmpClothe!=NULL){
-		magicalPro += tmpClothe->getMagicProtection();
-		physicalPro += tmpClothe->getPhysicalProtection();
-	}*/
-	os << "  Stats :" << endl << "    Power : " << tmpWeapon.getPower() << endl;
-	os << "    Cadence : " << tmpWeapon.getCadence() << endl;
-	os << "    Magical protection : " << tmpClothe.getMagicProtection() << endl;
-	os  << "    Physical protection : " << tmpClothe.getPhysicalProtection() << endl;
+	os << "  Stats :" << endl;
+	os << "    Domage points : " << character.getDamagePoints() << endl;
+	os << "    Magical protection : " << character.getMagicProtection() << endl;
+	os << "    Physical protection : " << character.getPhysicalProtection() << endl;
 
 	os << "  Items :";
 	map<string, pair<Object*,int> > tmp = character.getBag();
@@ -146,6 +132,7 @@ ostream& operator<< (ostream& os, Character character){
 
 	return os;
 }
+
 
 void Character::heal(int lifeHealed){
 	int tmp = currentLife + lifeHealed;
@@ -215,20 +202,47 @@ bool Character::hasObject(Object object){
 
 void Character::equipWeapon(Weapon weapon){
 	if(hasObject(weapon))
-		equipedWeapon = weapon;
+		equipedWeapon = &weapon;
 }
 
 void Character::setEqWeapon(Weapon weapon){
-	equipedWeapon = weapon;
+	equipedWeapon = &weapon;
 	//addObject(weapon, 1);
 }
 
 void Character::equipClothe(Clothe clothe){
 	if(hasObject(clothe))
-		equipedClothe = clothe;
+		equipedClothe = &clothe;
 }
 
 void Character::setEqClothe(Clothe clothe){
-	equipedClothe = clothe;
+	equipedClothe = &clothe;
 	//addObject(clothe, 1);
 }
+
+float Character::getDamagePoints(){
+	float power=1;
+
+	if(equipedWeapon!=NULL)
+		power += equipedWeapon->getPower() * equipedWeapon->getCadence();
+	return power;
+}
+
+float Character::getMagicProtection(){
+	float magicalPro=0.;
+
+	if(equipedClothe!=NULL)
+		magicalPro += equipedClothe->getMagicProtection();
+
+	return magicalPro;
+}
+
+float Character::getPhysicalProtection(){
+	float physicalPro=0.;
+
+	if(equipedClothe!=NULL)
+		physicalPro += equipedClothe->getPhysicalProtection();
+
+	return physicalPro;
+}
+

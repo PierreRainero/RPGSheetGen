@@ -38,7 +38,7 @@ Save::~Save(){
 vector<Object> Save::readObjectstxt(){
 	ifstream objects("objects.txt", ios::in);
 	vector<Object> objtab;
-	Object obj; 
+	Object obj;
 	if(objects)
 	{
 		cout << "objects.txt succesfully opened !" <<endl;
@@ -99,7 +99,7 @@ vector<Object> Save::getObjects(){
 vector<Weapon> Save::readWeaponstxt(){
 	ifstream weapons("weapons.txt", ios::in);
 	vector<Weapon> weapontab;
-	Weapon weapon; 
+	Weapon weapon;
 	if(weapons)
 	{
 		cout << "weapons.txt succesfully opened !" <<endl;
@@ -164,7 +164,7 @@ vector<Weapon> Save::getWeapons(){
 vector<Clothe> Save::readClothestxt(){
 	ifstream clothes("clothes.txt", ios::in);
 	vector<Clothe> clothestab;
-	Clothe clothe; 
+	Clothe clothe;
 	if(clothes)
 	{
 		cout << "clothes.txt succesfully opened !" <<endl;
@@ -221,7 +221,7 @@ void Save::WriteClothestxt(){
 void Save::setClothes(vector<Clothe> clothetab){
 	this->clothetab=clothetab;
 }
-		
+
 vector<Clothe> Save::getClothes(){
 	return(clothetab);
 }
@@ -229,7 +229,7 @@ vector<Clothe> Save::getClothes(){
 vector<Class> Save::readClassestxt(){
 	ifstream classes("classes.txt", ios::in);
 	vector<Class> classtab;
-	Class clas; 
+	Class clas;
 	if(classes)
 	{
 		cout << "classes.txt succesfully opened !" <<endl;
@@ -278,7 +278,7 @@ void Save::WriteClassestxt(){
 void Save::setClasses(vector<Class> classtab){
 	this->classtab=classtab;
 }
-		
+
 vector<Class> Save::getClasses(){
 	return(classtab);
 }
@@ -321,7 +321,7 @@ Character Save::getCharacter(string character){
 		for(int i(0); i<weapontab.size(); ++i)
 		{
 			if(weapontab[i].getName().compare(weaponName)==0){
-			
+
 			charac.setEqWeapon(weapontab[i]);
 			triggerWeapon++;
 			}
@@ -361,7 +361,7 @@ Character Save::getCharacter(string character){
 				//Gandalf.equipWeapon(wea);
 			}
 		}
-	characflow.close();	
+	characflow.close();
 	}
 	else
 	{
@@ -424,7 +424,7 @@ void Save::WriteCharactertxt(string character, Character charac){
 	if(characflow){
 		cout << character << ".txt succesfully opened !" <<endl;
 		characflow << charac.getName() << endl << charac.getAge() << endl << charac.getClassName() << endl << charac.getMaxLife() <<endl;
-		characflow << charac.getCurrentLife() << endl << charac.getMaxWeight() << endl << charac.getCurrentWeight() << endl << charac.getEquipedWeapon().getName() << endl << charac.getEquipedClothe().getName() <<endl;
+		characflow << charac.getCurrentLife() << endl << charac.getMaxWeight() << endl << charac.getCurrentWeight() << endl << charac.getEquipedWeapon()->getName() << endl << charac.getEquipedClothe()->getName() <<endl;
 		map<string, pair<Object*,int> > tmp = charac.getBag();
 		map<string, pair<Object*,int> >::iterator it;
 		for(it = tmp.begin(); it != tmp.end(); it++){
@@ -440,7 +440,7 @@ void Save::WriteCharactertxt(string character, Character charac){
 void Save::setCharacters(vector<string> charactab){
 	this->charactab=charactab;
 }
-		
+
 vector<string> Save::getCharacters(){
 	return(charactab);
 }
