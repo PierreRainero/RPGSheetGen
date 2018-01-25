@@ -1,5 +1,7 @@
 #include <iostream>
-
+#include <fstream>
+#include <vector>
+#include <utility>
 #include "Weapon.h"
 
 using namespace std;
@@ -23,6 +25,14 @@ float Weapon::getPower(){
 
 float Weapon::getCadence(){
     return cadence;
+}
+
+void Weapon::setPower(float power){
+	this->power=power;
+}
+
+void Weapon::setCadence(float cadence){
+	this->cadence=cadence;
 }
 
 ostream& operator<< (ostream& os, Weapon weapon){

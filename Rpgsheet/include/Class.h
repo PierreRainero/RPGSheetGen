@@ -1,8 +1,8 @@
 #ifndef CLASS_H
 #define CLASS_H
-#include <iostream>
 
-using std::ostream;
+using std::fstream;
+
 using std::string;
 
 class Class{
@@ -12,6 +12,7 @@ class Class{
 		~Class();
 
 		string getName();
+		void setName(string name);
 
 	private:
 		string name;

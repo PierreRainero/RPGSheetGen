@@ -1,11 +1,11 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
-#include <iostream>
-using std::ostream;
-using std::string;
+#ifndef CHARACT_H
+#define CHARACT_H
 
 #include <map>
 #include <utility>
+
+using std::string;
+using std::ostream;
 
 #include "Class.h"
 #include "Weapon.h"
@@ -20,17 +20,23 @@ class Character{
 		string getName();
 		int getAge();
 		string getClassName();
+		int getMaxLife();
 		int getCurrentLife();
+		float getMaxWeight();
 		float getCurrentWeight();
 		float getCurrentMoney();
-		Weapon* getEquipedWeapon();
-		Clothe* getEquipedClothe();
-		float getDamagePoints();
-		float getMagicProtection();
-		float getPhysicalProtection();
-		std::map<string, std::pair<Object*,int> > getBag();
+		Weapon getEquipedWeapon();
+		Clothe getEquipedClothe();
 
+		void setName(string name);
 		void setAge(int newAge);
+		void setClassName(string className);
+		void setClass(Class cla);
+		void setMaxLife(int maxLife);
+		void setCurrentLife(int currentlife);
+		void setMaxWeight(float maxWeight);
+		void setCurrentWeight(float currentWeight);
+		void setCurrentMoney(float money);
 
 		friend ostream& operator<< (ostream& os, Character character);
 
@@ -45,7 +51,10 @@ class Character{
 		bool hasObject(Object object);
 
 		void equipWeapon(Weapon weapon);
+		void setEqWeapon(Weapon weapon);
 		void equipClothe(Clothe clothe);
+		void setEqClothe(Clothe clothe);
+		std::map<string, std::pair<Object*,int> > getBag();
 
 	private:
 		string name;
@@ -57,10 +66,11 @@ class Character{
 		float currentWeight;
 		float money;
 		std::map<string, std::pair<Object*,int> > bag;
-		Weapon* equipedWeapon;
-		Clothe* equipedClothe;
+		Weapon equipedWeapon;
+		Clothe equipedClothe;
 
 		bool canCarrythis(float weight);
+		//std::map<string, std::pair<Object*,int> > getBag();
 };
 
 #endif

@@ -47,6 +47,7 @@
 		<Unit filename="include/EquipementAdd.h" />
 		<Unit filename="include/MainWindows.h" />
 		<Unit filename="include/Object.h" />
+		<Unit filename="include/Save.h" />
 		<Unit filename="include/Weapon.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AddItem.cpp" />
@@ -58,6 +59,7 @@
 		<Unit filename="src/EquipementAdd.cpp" />
 		<Unit filename="src/MainWindows.cpp" />
 		<Unit filename="src/Object.cpp" />
+		<Unit filename="src/Save.cpp" />
 		<Unit filename="src/Weapon.cpp" />
 		<Extensions>
 			<code_completion />

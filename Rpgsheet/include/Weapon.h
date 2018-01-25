@@ -1,7 +1,7 @@
 #ifndef WEAPON_H
 #define WEAPON_H
-#include <iostream>
-using std::ostream;
+
+using std::fstream;
 
 #include "Object.h"
 
@@ -13,12 +13,13 @@ class Weapon : public Object {
 
         float getPower();
         float getCadence();
+        void setPower(float power);
+        void setCadence(float cadence);
 
         friend ostream& operator<< (ostream& os, Weapon weapon);
 
 	private:
 		float power;
-        float cadence;
+    float cadence;
 };
-
 #endif

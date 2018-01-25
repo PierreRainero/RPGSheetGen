@@ -1,7 +1,6 @@
-#include <iostream>
 
 #include "Character.h"
-
+#include <iostream>
 using namespace std;
 
 Character::Character(){
@@ -12,8 +11,10 @@ Character::Character(){
 	this->maxWeight = 120.;
 	currentWeight = 0.;
 	money = 0.;
-	equipedWeapon = NULL;
-	equipedClothe = NULL;
+	Weapon wea;
+	Clothe clo;
+	equipedWeapon = wea;
+	equipedClothe = clo;
 }
 
 Character::Character(string name, int age, int maxLife, float maxWeight, Class characterClass){
@@ -25,8 +26,10 @@ Character::Character(string name, int age, int maxLife, float maxWeight, Class c
 	currentWeight = 0.;
 	this->characterClass = characterClass;
 	money = 0.;
-	equipedWeapon = NULL;
-	equipedClothe = NULL;
+	Weapon wea;
+	Clothe clo;
+	equipedWeapon = wea;
+	equipedClothe = clo;
 }
 
 Character::~Character(){
@@ -45,8 +48,16 @@ string Character::getClassName(){
 	return characterClass.getName();
 }
 
+int Character::getMaxLife(){
+	return (maxLife);
+}
+
 int Character::getCurrentLife(){
 	return currentLife;
+}
+
+float Character::getMaxWeight(){
+	return(maxWeight);
 }
 
 float Character::getCurrentWeight(){
@@ -57,56 +68,74 @@ float Character::getCurrentMoney(){
 	return money;
 }
 
-Weapon* Character::getEquipedWeapon(){
+Weapon Character::getEquipedWeapon(){
 	return equipedWeapon;
 }
 
-Clothe* Character::getEquipedClothe(){
+Clothe Character::getEquipedClothe(){
 	return equipedClothe;
 }
 
-float Character::getDamagePoints(){
-	float power=1;
-
-	if(equipedWeapon!=NULL)
-		power += equipedWeapon->getPower() * equipedWeapon->getCadence();
-	return power;
-}
-
-float Character::getMagicProtection(){
-	float magicalPro=0.;
-
-	if(equipedClothe!=NULL)
-		magicalPro += equipedClothe->getMagicProtection();
-
-	return magicalPro;
-}
-
-float Character::getPhysicalProtection(){
-	float physicalPro=0.;
-
-	if(equipedClothe!=NULL)
-		physicalPro += equipedClothe->getPhysicalProtection();
-
-	return physicalPro;
-}
-
-map<string, pair<Object*,int> > Character::getBag(){
-	return bag;
+void Character::setName(string name){
+	this->name=name;
 }
 
 void Character::setAge(int newAge){
 	age = newAge;
 }
 
+void Character::setClass(Class cla){
+	this->characterClass=cla;
+}
+
+void Character::setClassName(string className){
+	characterClass.setName(className);
+}
+
+void Character::setMaxLife(int maxLife){
+	this->maxLife=maxLife;
+}
+
+void Character::setCurrentLife(int currentLife){
+	this->currentLife=currentLife;
+}
+
+void Character::setMaxWeight(float maxWeight){
+	this->maxWeight=maxWeight;
+}
+
+void Character::setCurrentWeight(float currentWeight){
+	this->currentWeight=currentWeight;
+}
+
+void Character::setCurrentMoney(float money){
+	this->money=money;
+}
+
+map<string, pair<Object*,int> > Character::getBag(){
+	return bag;
+}
+
 ostream& operator<< (ostream& os, Character character){
 	os << character.getName() << " :" << endl << "  Age : " << character.getAge() << endl << "  Class : " << character.getClassName() << endl;
 	os << "  Weight : " << character.getCurrentWeight() << endl;
 	os << "  Money : " << character.getCurrentMoney() << endl;
-	os << "  Stats :" << endl;
-	os << "    Domage points : " << character.getDamagePoints() << endl;
-	os << "    Magical protection : " << character.getMagicProtection() << endl;
-	os << "    Physical protection : " << character.getPhysicalProtection() << endl;
+
+	Weapon tmpWeapon = character.getEquipedWeapon();
+	Clothe tmpClothe = character.getEquipedClothe();
+	//float power=0., cadence=0., magicalPro=0., physicalPro=0.;
+	/*if(tmpWeapon!=NULL){
+		power += tmpWeapon->getPower();
+		cadence += tmpWeapon->getCadence();
+	}
+	if(tmpClothe!=NULL){
+		magicalPro += tmpClothe->getMagicProtection();
+		physicalPro += tmpClothe->getPhysicalProtection();
+	}*/
+	os << "  Stats :" << endl << "    Power : " << tmpWeapon.getPower() << endl;
+	os << "    Cadence : " << tmpWeapon.getCadence() << endl;
+	os << "    Magical protection : " << tmpClothe.getMagicProtection() << endl;
+	os  << "    Physical protection : " << tmpClothe.getPhysicalProtection() << endl;
 
 	os << "  Items :";
 	map<string, pair<Object*,int> > tmp = character.getBag();
@@ -186,10 +215,20 @@ bool Character::hasObject(Object object){
 
 void Character::equipWeapon(Weapon weapon){
 	if(hasObject(weapon))
-		equipedWeapon = &weapon;
+		equipedWeapon = weapon;
+}
+
+void Character::setEqWeapon(Weapon weapon){
+	equipedWeapon = weapon;
+	//addObject(weapon, 1);
 }
 
 void Character::equipClothe(Clothe clothe){
 	if(hasObject(clothe))
-		equipedClothe = &clothe;
+		equipedClothe = clothe;
+}
+
+void Character::setEqClothe(Clothe clothe){
+	equipedClothe = clothe;
+	//addObject(clothe, 1);
 }

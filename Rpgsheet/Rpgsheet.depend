@@ -4,7 +4,7 @@
 	<gtkmm-3.0/gtkmm.h>
 	"MainWindows.h"
 
-1516886022 /home/black/RPGSheetGen/Rpgsheet/include/MainWindows.h
+1516888020 /home/black/RPGSheetGen/Rpgsheet/include/MainWindows.h
 	<gtkmm-3.0/gtkmm.h>
 	<Character.h>
 	<iostream>
@@ -12,40 +12,44 @@
 	<CreateCharac.h>
 	<AddItem.h>
 	<EquipementAdd.h>
+	<Save.h>
 
-1516886035 source:/home/black/RPGSheetGen/Rpgsheet/src/MainWindows.cpp
+1516888027 source:/home/black/RPGSheetGen/Rpgsheet/src/MainWindows.cpp
 	"MainWindows.h"
 
-1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Character.h
-	<iostream>
+1516888899 /home/black/RPGSheetGen/Rpgsheet/include/Character.h
 	<map>
 	<utility>
 	"Class.h"
 	"Weapon.h"
 	"Clothe.h"
 
-1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Class.h
-	<iostream>
+1516888923 /home/black/RPGSheetGen/Rpgsheet/include/Class.h
 
-1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Weapon.h
-	<iostream>
+1516888923 /home/black/RPGSheetGen/Rpgsheet/include/Weapon.h
 	"Object.h"
 
-1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Object.h
+1516888923 /home/black/RPGSheetGen/Rpgsheet/include/Object.h
 
-1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Clothe.h
+1516888950 /home/black/RPGSheetGen/Rpgsheet/include/Clothe.h
 	"Object.h"
 
-1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/Character.cpp
-	<iostream>
+1516888879 source:/home/black/RPGSheetGen/Rpgsheet/src/Character.cpp
 	"Character.h"
-
-1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/Class.cpp
 	<iostream>
+
+1516886207 source:/home/black/RPGSheetGen/Rpgsheet/src/Class.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
 	"Class.h"
 
-1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/Clothe.cpp
+1516886119 source:/home/black/RPGSheetGen/Rpgsheet/src/Clothe.cpp
 	<iostream>
+	<fstream>
+	<vector>
+	<utility>
 	"Clothe.h"
 
 1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/Object.cpp
@@ -7064,4 +7068,8 @@
 
 1516880466 source:/home/black/RPGSheetGen/Rpgsheet/src/EquipementAdd.cpp
 	"EquipementAdd.h"
+
+1516888277 /home/black/RPGSheetGen/Rpgsheet/include/Save.h
+	"Object.h"
+	"Character.h"
 

@@ -1,5 +1,7 @@
 #include <iostream>
-
+#include <fstream>
+#include <vector>
+#include <utility>
 #include "Clothe.h"
 
 using namespace std;
@@ -23,6 +25,14 @@ float Clothe::getMagicProtection(){
 
 float Clothe::getPhysicalProtection(){
     return physicalProtection;
+}
+
+void Clothe::setMagicProtection(float magicProtection){
+	this->magicProtection=magicProtection;
+}
+
+void Clothe::setPhysicalProtection(float physicalProtection){
+	this->physicalProtection=physicalProtection;
 }
 
 ostream& operator<< (ostream& os, Clothe clothe){

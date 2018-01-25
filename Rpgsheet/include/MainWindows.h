@@ -8,6 +8,7 @@
 #include <CreateCharac.h>
 #include <AddItem.h>
 #include <EquipementAdd.h>
+#include <Save.h>
 
 class MainWindows : public Gtk::Window
 {
@@ -19,6 +20,7 @@ class MainWindows : public Gtk::Window
 
     private:
 
+    Save *save;
     Character* Charac;
     Gtk::Notebook* NoteB;
     Gtk::VBox* boiteVGlobal;

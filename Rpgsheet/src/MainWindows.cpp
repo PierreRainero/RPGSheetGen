@@ -4,6 +4,7 @@ using namespace std;
 MainWindows::MainWindows()
 {
     Charac = new Character();
+    save = new Save();
     int ecart = 10;
     //this->set_border_width(ecart);
 
@@ -21,9 +22,7 @@ MainWindows::MainWindows()
     boiteVF = Gtk::manage(new Gtk::VBox(false,ecart));
     boiteButonItem = Gtk::manage(new Gtk::HBox(false,ecart));
 
-    ListPerso.append("test");
-    ListPerso.append("test2");
-    ListPerso.set_active_text("test");
+
     ListPerso.signal_changed().connect(sigc::mem_fun(*this,&MainWindows::ChangePerso));
 
 
@@ -148,6 +147,7 @@ MainWindows::MainWindows()
     boiteVGlobal->pack_start(*NoteB);
     this->add(*boiteVGlobal);
     this->show_all();
+    MainWindows::Filler();
     MainWindows::ChangePerso();
 }
 
@@ -230,6 +230,10 @@ void MainWindows::NewPerso(){
 
 void MainWindows::Filler(){
 
+    for(int i= 0;i<save->getCharacters().size();i++){
+        ListPerso.append(save->getCharacters()[i]);
+    }
+    ListPerso.set_active_text(save->getCharacters()[0]);
 }
 
 void MainWindows::Equipement(){
