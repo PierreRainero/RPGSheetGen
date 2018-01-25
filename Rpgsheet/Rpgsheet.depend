@@ -4,7 +4,7 @@
 	<gtkmm-3.0/gtkmm.h>
 	"MainWindows.h"
 
-1516878086 /home/black/RPGSheetGen/Rpgsheet/include/MainWindows.h
+1516886022 /home/black/RPGSheetGen/Rpgsheet/include/MainWindows.h
 	<gtkmm-3.0/gtkmm.h>
 	<Character.h>
 	<iostream>
@@ -13,7 +13,7 @@
 	<AddItem.h>
 	<EquipementAdd.h>
 
-1516880132 source:/home/black/RPGSheetGen/Rpgsheet/src/MainWindows.cpp
+1516886035 source:/home/black/RPGSheetGen/Rpgsheet/src/MainWindows.cpp
 	"MainWindows.h"
 
 1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Character.h
@@ -7062,6 +7062,6 @@
 1516879996 /home/black/RPGSheetGen/Rpgsheet/include/EquipementAdd.h
 	<gtkmm.h>
 
-1516880184 source:/home/black/RPGSheetGen/Rpgsheet/src/EquipementAdd.cpp
+1516880466 source:/home/black/RPGSheetGen/Rpgsheet/src/EquipementAdd.cpp
 	"EquipementAdd.h"
 

@@ -65,7 +65,7 @@ class MainWindows : public Gtk::Window
     Gtk::Label* NullZoneI1;
     Gtk::Label* NullZoneI2;
     Gtk::Label* NullZoneI3;
-    Gtk::Table* ItemT;
+
 
     Gtk::ComboBoxText Modif;
     Gtk::Entry ModifText;
@@ -80,6 +80,8 @@ class MainWindows : public Gtk::Window
 
     Gtk::Button* butonAddItem;
     Gtk::Button* butonCreateItem;
+
+
 
 
     void ChangePerso();

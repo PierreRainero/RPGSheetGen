@@ -60,7 +60,8 @@ MainWindows::MainWindows()
     NullZoneI1 = Gtk::manage(new Gtk::Label(""));
     NullZoneI2 = Gtk::manage(new Gtk::Label(""));
     NullZoneI3 = Gtk::manage(new Gtk::Label(""));
-    ItemT = Gtk::manage(new Gtk::Table(5,2));
+
+
 
     Modif.append("Life");
     Modif.append("Money");
@@ -79,6 +80,7 @@ MainWindows::MainWindows()
 
     ButonNewPerso = Gtk::manage(new Gtk::Button("New Character"));
     ButonNewPerso->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::NewPerso));
+
 
     boiteVInfo->pack_start(*Name);
     boiteVInfo->pack_start(*Class);
@@ -135,9 +137,8 @@ MainWindows::MainWindows()
     boiteButonItem->pack_start(*butonCreateItem);
 
     boiteHItem->pack_start(*Item);
-    boiteHItem->pack_start(*NullZoneI1);
-    boiteHItem->pack_start(*NullZoneI2);
-    boiteHItem->pack_start(*NullZoneI3);
+
+
     boiteVItem->pack_start(*boiteHItem);
     boiteVItem->pack_start(*boiteButonItem);
 
@@ -211,7 +212,6 @@ void MainWindows::AddItems(){
 }
 
 void MainWindows::NewItem(){
-//    Gtk::Main app(argc, argv);
     CreatItem fenetreNewItem;
     Gtk::Main::run(fenetreNewItem);
     while(fenetreNewItem.is_visible()){
