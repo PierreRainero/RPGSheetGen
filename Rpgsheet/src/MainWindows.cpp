@@ -69,6 +69,9 @@ MainWindows::MainWindows()
     ButtonValModif = Gtk::manage(new Gtk::Button("Valide"));
     ButtonValModif->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::UpdateValue));
 
+    EquipementAdds = Gtk::manage(new Gtk::Button("Equipe Cloth/Weapon"));
+    EquipementAdds->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::Equipement));
+
     butonAddItem = Gtk::manage(new Gtk::Button("Add Item"));
     butonCreateItem = Gtk::manage(new Gtk::Button("New Item"));
     butonAddItem->signal_clicked().connect(sigc::mem_fun(*this,&MainWindows::AddItems));
@@ -117,6 +120,7 @@ MainWindows::MainWindows()
     boiteHModif->pack_start(Modif);
     boiteHModif->pack_start(ModifText);
     boiteHModif->pack_start(*ButtonValModif);
+    boiteHModif->pack_start(*EquipementAdds);
 
     boiteVF->pack_start(*boiteH);
     boiteVF->pack_start(*boiteEquipement);
@@ -221,9 +225,17 @@ void MainWindows::NewPerso(){
     while(fenetreNewCharac.is_visible()){
 
     }
+    Filler();
+}
+
+void MainWindows::Filler(){
 
 }
 
-void Filler(){
-
+void MainWindows::Equipement(){
+    EquipementAdd EquipementWin;
+    Gtk::Main::run(EquipementWin);
+    while(EquipementWin.is_visible()){
+    }
+    ChangePerso();
 }

@@ -4,18 +4,19 @@
 	<gtkmm-3.0/gtkmm.h>
 	"MainWindows.h"
 
-1516812198 /home/black/RPGSheetGen/Rpgsheet/include/MainWindows.h
+1516878086 /home/black/RPGSheetGen/Rpgsheet/include/MainWindows.h
 	<gtkmm-3.0/gtkmm.h>
 	<Character.h>
 	<iostream>
 	<CreatItem.h>
 	<CreateCharac.h>
 	<AddItem.h>
+	<EquipementAdd.h>
 
-1516812197 source:/home/black/RPGSheetGen/Rpgsheet/src/MainWindows.cpp
+1516880132 source:/home/black/RPGSheetGen/Rpgsheet/src/MainWindows.cpp
 	"MainWindows.h"
 
-1516805001 /home/black/RPGSheetGen/Rpgsheet/include/Character.h
+1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Character.h
 	<iostream>
 	<map>
 	<utility>
@@ -23,46 +24,46 @@
 	"Weapon.h"
 	"Clothe.h"
 
-1516804986 /home/black/RPGSheetGen/Rpgsheet/include/Class.h
+1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Class.h
 	<iostream>
 
-1516804990 /home/black/RPGSheetGen/Rpgsheet/include/Weapon.h
+1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Weapon.h
 	<iostream>
 	"Object.h"
 
-1516277875 /home/black/RPGSheetGen/Rpgsheet/include/Object.h
+1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Object.h
 
-1516277875 /home/black/RPGSheetGen/Rpgsheet/include/Clothe.h
+1516872105 /home/black/RPGSheetGen/Rpgsheet/include/Clothe.h
 	"Object.h"
 
-1516277875 source:/home/black/RPGSheetGen/Rpgsheet/src/Character.cpp
+1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/Character.cpp
 	<iostream>
 	"Character.h"
 
-1516277875 source:/home/black/RPGSheetGen/Rpgsheet/src/Class.cpp
+1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/Class.cpp
 	<iostream>
 	"Class.h"
 
-1516277875 source:/home/black/RPGSheetGen/Rpgsheet/src/Clothe.cpp
+1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/Clothe.cpp
 	<iostream>
 	"Clothe.h"
 
-1516277875 source:/home/black/RPGSheetGen/Rpgsheet/src/Object.cpp
+1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/Object.cpp
 	<iostream>
 	"Object.h"
 
-1516277875 source:/home/black/RPGSheetGen/Rpgsheet/src/Weapon.cpp
+1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/Weapon.cpp
 	<iostream>
 	"Weapon.h"
 
-1516283438 /home/black/RPGSheetGen/Rpgsheet/include/CreatItem.h
+1516872105 /home/black/RPGSheetGen/Rpgsheet/include/CreatItem.h
 	<iostream>
 	<gtkmm-3.0/gtkmm.h>
 
-1516285293 source:/home/black/RPGSheetGen/Rpgsheet/src/CreatItem.cpp
+1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/CreatItem.cpp
 	"CreatItem.h"
 
-1516809418 /home/black/RPGSheetGen/Rpgsheet/include/CreateCharac.h
+1516872105 /home/black/RPGSheetGen/Rpgsheet/include/CreateCharac.h
 	<Character.h>
 	<Class.h>
 	<gtkmm.h>
@@ -7047,14 +7048,20 @@
 	<sigc++/sigc++.h>
 	<gtkmm/scalebutton.h>
 
-1516809411 source:/home/black/RPGSheetGen/Rpgsheet/src/CreateCharac.cpp
+1516872105 source:/home/black/RPGSheetGen/Rpgsheet/src/CreateCharac.cpp
 	"CreateCharac.h"
 
-1516812251 /home/black/RPGSheetGen/Rpgsheet/include/AddItem.h
+1516876909 /home/black/RPGSheetGen/Rpgsheet/include/AddItem.h
 	<iostream>
 	<gtkmm.h>
 	<Character.h>
 
-1516812243 source:/home/black/RPGSheetGen/Rpgsheet/src/AddItem.cpp
+1516877105 source:/home/black/RPGSheetGen/Rpgsheet/src/AddItem.cpp
 	"AddItem.h"
+
+1516879996 /home/black/RPGSheetGen/Rpgsheet/include/EquipementAdd.h
+	<gtkmm.h>
+
+1516880184 source:/home/black/RPGSheetGen/Rpgsheet/src/EquipementAdd.cpp
+	"EquipementAdd.h"
 

@@ -7,6 +7,7 @@
 #include <CreatItem.h>
 #include <CreateCharac.h>
 #include <AddItem.h>
+#include <EquipementAdd.h>
 
 class MainWindows : public Gtk::Window
 {
@@ -69,6 +70,7 @@ class MainWindows : public Gtk::Window
     Gtk::ComboBoxText Modif;
     Gtk::Entry ModifText;
     Gtk::Button* ButtonValModif;
+    Gtk::Button* EquipementAdds;
     Gtk::Button* ButonNewPerso;
 
     Gtk::Label* ClotheEq;
@@ -87,6 +89,7 @@ class MainWindows : public Gtk::Window
     void NewItem();
     void NewPerso();
     void Filler();
+    void Equipement();
 
 };
 
